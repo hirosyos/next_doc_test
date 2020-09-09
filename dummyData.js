@@ -28,7 +28,22 @@ export const getDummyJsonData = (id) => {
   const userData = dummyData.find((element) => element.id === id);
   // alert(`user.idは${element.id} idは${id}`);
 
-  console.log({ userData });
+  // console.log({ userData });
 
   return JSON.stringify(userData);
+};
+
+export const getDummyObjData = (id) => {
+  // 指定されたユーザIDの情報を取り出す
+  // const userData = dummyData.find(function (user) {
+  //   Number(user.id) == Number(id);
+  //   alert(`user.idは${user.id} idは${id}`);
+  // });
+
+  const userData = dummyData.find((element) => element.id === id);
+  // console.log(`user.idは${element.id} idは${id}`);
+
+  // console.log({ userData });
+
+  return userData;
 };
