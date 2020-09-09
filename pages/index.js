@@ -16,7 +16,7 @@ function HomePage() {
           </Link>
         </li>
         <li>
-          <Link href="https://next-doc-test.vercel.app/users/2">
+          <Link href="https://next-doc-test.vercel.app/users/3">
             <a>ユーザ３のページ</a>
           </Link>
         </li>
