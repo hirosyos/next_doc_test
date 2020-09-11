@@ -82,6 +82,7 @@ const UserPage = () => {
           <li key={value.id}>{value.history}</li>
         ))}
       </ul> */}
+      <h1>firebase読み出しテストページ</h1>
       <p>URLに指定されたID: {userid}</p>
       <p>
         {userid}のid: {values.id}

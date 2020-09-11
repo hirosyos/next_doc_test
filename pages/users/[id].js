@@ -23,6 +23,7 @@ const UserPage = () => {
 
     return (
       <>
+        <h1>ダミーデータ読み出しテストページ</h1>
         <p>URLに指定されたID: {id}</p>
         <p>
           {id}のid: {dummyData2.id}
