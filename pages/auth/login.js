@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -138,6 +139,10 @@ function Auth() {
         return (
             <Layout>
                 <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館/ログイン</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
                     <Signin />
                     <Login />
                 </div>
@@ -147,6 +152,10 @@ function Auth() {
     return (
         <Layout>
             <div className={styles.container}>
+                <Head>
+                    <title>自分史図書館/ログイン</title>
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
                 User: {user.email}
                 <Logout />
             </div>

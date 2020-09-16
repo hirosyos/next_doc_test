@@ -8,10 +8,10 @@ function HomePage() {
         <Layout>
             <div className={styles.container}>
                 <Head>
-                    <title>Create Next App</title>
+                    <title>自分史図書館</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                <h1>Welcome to Next.js!</h1>
+                <h1>自分史図書館</h1>
                 <h2>認証ページ（登録/ログイン/ログアウトのみ）</h2>
                 <ul>
                     <li>

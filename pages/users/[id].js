@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { getDummyJsonData, getDummyObjData } from "../../dummyData";
 import styles from "../../styles/Home.module.scss";
@@ -26,6 +27,10 @@ const UserPage = () => {
         return (
             <Layout>
                 <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館/ユーザダミー</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
                     <h1>ダミーデータ読み出しテストページ</h1>
                     <p>URLに指定されたID: {id}</p>
                     <p>
@@ -44,6 +49,10 @@ const UserPage = () => {
         return (
             <Layout>
                 <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館/ユーザダミー</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
                     <p>URLに指定されたID: {id} ロード中</p>
                 </div>
             </Layout>

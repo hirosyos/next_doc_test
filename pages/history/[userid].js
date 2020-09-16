@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
@@ -33,6 +34,10 @@ const UserPage = () => {
         return (
             <Layout>
                 <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
                     <div>Loading...</div>
                 </div>
             </Layout>
@@ -42,6 +47,10 @@ const UserPage = () => {
         return (
             <Layout>
                 <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館/ユーザページ</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
                     <div>{`Error: ${error.message}`}</div>;
                 </div>
             </Layout>
@@ -52,6 +61,10 @@ const UserPage = () => {
     return (
         <Layout>
             <div className={styles.container}>
+                <Head>
+                    <title>自分史図書館/ユーザページ</title>
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
                 {/* <ul>
         {values.map((value) => (
           <li key={value.id}>{value.history}</li>
