@@ -8,6 +8,8 @@ import {
     useDocument,
 } from "react-firebase-hooks/firestore";
 import firebase from "../../plugins/firebase";
+import styles from "../../styles/Home.module.scss";
+import Layout from "../../components/Layout";
 
 // コンポーネント：ユーザーページ出力
 const UserPage = () => {
@@ -28,32 +30,46 @@ const UserPage = () => {
         }
     );
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <Layout>
+                <div className={styles.container}>
+                    <div>Loading...</div>
+                </div>
+            </Layout>
+        );
     }
     if (error) {
-        return <div>{`Error: ${error.message}`}</div>;
+        return (
+            <Layout>
+                <div className={styles.container}>
+                    <div>{`Error: ${error.message}`}</div>;
+                </div>
+            </Layout>
+        );
     }
     console.log(values);
 
     return (
-        <>
-            {/* <ul>
+        <Layout>
+            <div className={styles.container}>
+                {/* <ul>
         {values.map((value) => (
           <li key={value.id}>{value.history}</li>
         ))}
       </ul> */}
-            <h1>firebase読み出しテストページ</h1>
-            <p>URLに指定されたID: {userid}</p>
-            <p>
-                {userid}のid: {values.id}
-            </p>
-            <p>
-                {userid}のname: {values.name}
-            </p>
-            <p>
-                {userid}のhistory: {values.history}
-            </p>
-        </>
+                <h1>firebase読み出しテストページ</h1>
+                <p>URLに指定されたID: {userid}</p>
+                <p>
+                    {userid}のid: {values.id}
+                </p>
+                <p>
+                    {userid}のname: {values.name}
+                </p>
+                <p>
+                    {userid}のhistory: {values.history}
+                </p>
+            </div>
+        </Layout>
     );
 };
 

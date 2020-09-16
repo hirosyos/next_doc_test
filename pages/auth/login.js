@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from "../plugins/firebase";
+import firebase from "../../plugins/firebase";
+import styles from "../../styles/Home.module.scss";
+import Layout from "../../components/Layout";
 
 const Signin = () => {
     const [email, setEmail] = useState("");
@@ -29,7 +31,7 @@ const Signin = () => {
         }
     };
     return (
-        <div>
+        <>
             <h1>ログインテストページ</h1>
             <form onSubmit={onSubmit}>
                 <input
@@ -48,7 +50,7 @@ const Signin = () => {
                 {pending && "Pending..."}
                 {error && `Error: ${error.message}`}
             </form>
-        </div>
+        </>
     );
 };
 
@@ -78,7 +80,7 @@ const Login = () => {
         }
     };
     return (
-        <div>
+        <>
             <form onSubmit={onSubmit}>
                 <input
                     type="email"
@@ -96,7 +98,7 @@ const Login = () => {
                 {pending && "Pending..."}
                 {error && `Error: ${error.message}`}
             </form>
-        </div>
+        </>
     );
 };
 
@@ -115,12 +117,12 @@ const Logout = () => {
         if (mounted.current) setPending(false);
     };
     return (
-        <div>
+        <>
             <button type="button" onClick={logout}>
                 Logout
             </button>
             {pending && "Pending..."}
-        </div>
+        </>
     );
 };
 
@@ -134,17 +136,21 @@ function Auth() {
     }
     if (!user) {
         return (
-            <>
-                <Signin />
-                <Login />
-            </>
+            <Layout>
+                <div className={styles.container}>
+                    <Signin />
+                    <Login />
+                </div>
+            </Layout>
         );
     }
     return (
-        <div>
-            User: {user.email}
-            <Logout />
-        </div>
+        <Layout>
+            <div className={styles.container}>
+                User: {user.email}
+                <Logout />
+            </div>
+        </Layout>
     );
 }
 

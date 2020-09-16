@@ -1,44 +1,54 @@
 import { useRouter } from "next/router";
 import { getDummyJsonData, getDummyObjData } from "../../dummyData";
+import styles from "../../styles/Home.module.scss";
+import Layout from "../../components/Layout";
 
 // コンポーネント：ユーザーページ出力
 const UserPage = () => {
-  const router = useRouter();
+    const router = useRouter();
 
-  // URLに入力されたユーザID読み出し
-  const { id } = router.query;
-  console.log({ id });
+    // URLに入力されたユーザID読み出し
+    const { id } = router.query;
+    console.log({ id });
 
-  // ユーザ情報読み出し;
-  // 本来はここでFireStoreアクセス;
-  const dummyJsonData = getDummyJsonData(Number(id));
+    // ユーザ情報読み出し;
+    // 本来はここでFireStoreアクセス;
+    const dummyJsonData = getDummyJsonData(Number(id));
 
-  if (dummyJsonData) {
-    console.log({ dummyJsonData });
-    const dummyData2 = JSON.parse(dummyJsonData);
+    if (dummyJsonData) {
+        console.log({ dummyJsonData });
+        const dummyData2 = JSON.parse(dummyJsonData);
 
-    //   const dummyData2 = getDummyObjData(Number(id));
+        //   const dummyData2 = getDummyObjData(Number(id));
 
-    console.log({ dummyData2 });
+        console.log({ dummyData2 });
 
-    return (
-      <>
-        <h1>ダミーデータ読み出しテストページ</h1>
-        <p>URLに指定されたID: {id}</p>
-        <p>
-          {id}のid: {dummyData2.id}
-        </p>
-        <p>
-          {id}のname: {dummyData2.name}
-        </p>
-        <p>
-          {id}のhistory: {dummyData2.history}
-        </p>
-      </>
-    );
-  } else {
-    return <p>URLに指定されたID: {id} ロード中</p>;
-  }
+        return (
+            <Layout>
+                <div className={styles.container}>
+                    <h1>ダミーデータ読み出しテストページ</h1>
+                    <p>URLに指定されたID: {id}</p>
+                    <p>
+                        {id}のid: {dummyData2.id}
+                    </p>
+                    <p>
+                        {id}のname: {dummyData2.name}
+                    </p>
+                    <p>
+                        {id}のhistory: {dummyData2.history}
+                    </p>
+                </div>
+            </Layout>
+        );
+    } else {
+        return (
+            <Layout>
+                <div className={styles.container}>
+                    <p>URLに指定されたID: {id} ロード中</p>
+                </div>
+            </Layout>
+        );
+    }
 };
 
 // export async function getServerSideProps() {
