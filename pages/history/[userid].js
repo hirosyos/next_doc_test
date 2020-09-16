@@ -21,10 +21,6 @@ const UserPage = () => {
     console.log({ userid });
 
     const [values, loading, error] = useDocumentData(
-        // firebase.firestore().collection("todos"),
-        // {
-        //   idField: "id",
-        // }
         firebase.firestore().doc(`users2/${userid}`),
         {
             idField: "id",
@@ -65,11 +61,6 @@ const UserPage = () => {
                     <title>自分史図書館/ユーザページ</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                {/* <ul>
-        {values.map((value) => (
-          <li key={value.id}>{value.history}</li>
-        ))}
-      </ul> */}
                 <h1>firebase読み出しテストページ</h1>
                 <p>URLに指定されたID: {userid}</p>
                 <p>

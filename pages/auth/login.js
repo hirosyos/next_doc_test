@@ -130,10 +130,30 @@ const Logout = () => {
 function Auth() {
     const [user, initialising, error] = useAuthState(firebase.auth());
     if (initialising) {
-        return <div>Initialising...</div>;
+        return (
+            <Layout>
+                <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館/ログイン</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
+                    <div>Initialising...</div>
+                </div>
+            </Layout>
+        );
     }
     if (error) {
-        return <div>Error: {error}</div>;
+        return (
+            <Layout>
+                <div className={styles.container}>
+                    <Head>
+                        <title>自分史図書館/ログイン</title>
+                        <link rel="icon" href="/favicon.ico" />
+                    </Head>
+                    <div>Error: {error}</div>
+                </div>
+            </Layout>
+        );
     }
     if (!user) {
         return (
