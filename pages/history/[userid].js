@@ -30,15 +30,10 @@ const UserPage = () => {
         return <div>Error: {error}</div>;
     }
     if (!user) {
-        return (
-            <div>
-                ログインされていません: {error}
-                <Link href="/auth/login">
-                    <a>認証ページ</a>
-                </Link>
-            </div>
-        );
-        // router.replace("/auth/login");
+        <div>ログインされていません: {error}</div>;
+        <div>ログインページへリダイレクトします: {error}</div>;
+        router.replace("/auth/login");
+        return <div />;
     }
 
     const [values, loading, error1] = useDocumentData(
