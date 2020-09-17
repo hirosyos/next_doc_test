@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -11,6 +12,7 @@ import {
 import firebase from "../../plugins/firebase";
 import styles from "../../styles/Home.module.scss";
 import Layout from "../../components/Layout";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 // コンポーネント：ユーザーページ出力
 const UserPage = () => {
@@ -20,7 +22,26 @@ const UserPage = () => {
     const { userid } = router.query;
     console.log({ userid });
 
-    const [values, loading, error] = useDocumentData(
+    const [user, initialising, error] = useAuthState(firebase.auth());
+    if (initialising) {
+        return <div>Initialising...</div>;
+    }
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+    if (!user) {
+        return (
+            <div>
+                ログインされていません: {error}
+                <Link href="/auth/login">
+                    <a>認証ページ</a>
+                </Link>
+            </div>
+        );
+        // router.replace("/auth/login");
+    }
+
+    const [values, loading, error1] = useDocumentData(
         firebase.firestore().doc(`users2/${userid}`),
         {
             idField: "id",
@@ -39,7 +60,7 @@ const UserPage = () => {
             </Layout>
         );
     }
-    if (error) {
+    if (error1) {
         return (
             <Layout>
                 <div className={styles.container}>
@@ -47,7 +68,7 @@ const UserPage = () => {
                         <title>自分史図書館/ユーザページ</title>
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
-                    <div>{`Error: ${error.message}`}</div>;
+                    <div>{`Error: ${error1.message}`}</div>;
                 </div>
             </Layout>
         );

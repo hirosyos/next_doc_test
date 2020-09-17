@@ -176,7 +176,15 @@ function Auth() {
                     <title>自分史図書館/ログイン</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                User: {user.email}
+                <p>displayName: {user.displayName}</p>
+                <p>email: {user.email}</p>
+                <p>emailVerified: {user.emailVerified}</p>
+                <p>photoURL: {user.photoURL}</p>
+                <p>isAnonymous: {user.isAnonymous}</p>
+                <p>uid: {user.uid}</p>
+                {/* <p>providerData: {user.providerData}</p> */}
+                {console.log("あああああ")}
+                {console.log({ user })}
                 <Logout />
             </div>
         </Layout>

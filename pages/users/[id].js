@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 import { getDummyJsonData, getDummyObjData } from "../../dummyData";
 import styles from "../../styles/Home.module.scss";
 import Layout from "../../components/Layout";
+import firebase from "../../plugins/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Link from "next/link";
 
 // コンポーネント：ユーザーページ出力
 const UserPage = () => {
@@ -11,6 +14,24 @@ const UserPage = () => {
     // URLに入力されたユーザID読み出し
     const { id } = router.query;
     console.log({ id });
+
+    const [user, initialising, error] = useAuthState(firebase.auth());
+    if (initialising) {
+        return <div>Initialising...</div>;
+    }
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+    if (!user) {
+        return (
+            <div>
+                ログインされていません: {error}
+                <Link href="/auth/login">
+                    <a>認証ページ</a>
+                </Link>
+            </div>
+        );
+    }
 
     // ユーザ情報読み出し;
     // 本来はここでFireStoreアクセス;
