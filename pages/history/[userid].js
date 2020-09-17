@@ -14,6 +14,12 @@ import styles from "../../styles/Home.module.scss";
 import Layout from "../../components/Layout";
 import { useAuthState } from "react-firebase-hooks/auth";
 
+export async function getServerSideProps() {
+    return {
+        props: {}, // will be passed to the page component as props
+    };
+}
+
 // コンポーネント：ユーザーページ出力
 const UserPage = () => {
     const router = useRouter();

@@ -6,9 +6,20 @@ import firebase from "../../plugins/firebase";
 import styles from "../../styles/Home.module.scss";
 import Layout from "../../components/Layout";
 
-const Signin = () => {
+// Firestoreにデータを送信する関数
+const postDataToFirestore = async (collectionName, docName, postData) => {
+    const addedData = await firebase
+        .firestore()
+        .collection(collectionName)
+        .doc(docName)
+        .set(postData);
+    return addedData;
+};
+
+const Signup = () => {
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
+    const [account, setAccount] = useState("");
     const [error, setError] = useState(null);
     const [pending, setPending] = useState(false);
     const mounted = useRef(true);
@@ -24,6 +35,14 @@ const Signin = () => {
         setPending(true);
         try {
             await firebase.auth().createUserWithEmailAndPassword(email, pass);
+
+            // //ユーザデータ書き込み
+            const postData = {
+                history: "React難しい",
+                id: "4",
+                name: account,
+            };
+            await postDataToFirestore("users2", account, postData);
         } catch (e) {
             console.log(e.message, mounted);
             if (mounted.current) setError(e);
@@ -33,7 +52,7 @@ const Signin = () => {
     };
     return (
         <>
-            <h1>ログインテストページ</h1>
+            <h2>サインアップ</h2>
             <form onSubmit={onSubmit}>
                 <input
                     type="email"
@@ -47,7 +66,13 @@ const Signin = () => {
                     onChange={(e) => setPass(e.target.value)}
                     placeholder="Password..."
                 />
-                <button type="submit">Signin</button>
+                <input
+                    type="text"
+                    value={account}
+                    onChange={(e) => setAccount(e.target.value)}
+                    placeholder="Account..."
+                />
+                <button type="submit">Signup</button>
                 {pending && "Pending..."}
                 {error && `Error: ${error.message}`}
             </form>
@@ -82,6 +107,7 @@ const Login = () => {
     };
     return (
         <>
+            <h2>ログイン</h2>
             <form onSubmit={onSubmit}>
                 <input
                     type="email"
@@ -163,7 +189,8 @@ function Auth() {
                         <title>自分史図書館/ログイン</title>
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
-                    <Signin />
+                    <h1>認証ページ</h1>
+                    <Signup />
                     <Login />
                 </div>
             </Layout>

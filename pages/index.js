@@ -55,6 +55,11 @@ function HomePage() {
                             <a>ユーザ３のページ</a>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/history/hoge9">
+                            <a>hoge9のページ</a>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </Layout>
