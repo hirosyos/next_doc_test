@@ -4,6 +4,7 @@ import firebase from "../plugins/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useAppRouter } from "../hooks";
 import { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function MyApp({ Component, pageProps }) {
     const [router, { needAuth }] = useAppRouter();
